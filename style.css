@@ -1,0 +1,69 @@
+/* Custom styles for the glassmorphism effect and layout */
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* Prevents scrollbars from the 3D scene */
+}
+
+#bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place the 3D scene behind the UI */
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* --- Specific Hover Effects --- */
+/* Apply transitions only to the small, interactive panels */
+.grid > .glass-panel, .hourly-forecast > .glass-panel {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Apply the hover effect only to the small panels inside the grid and forecast */
+.grid > .glass-panel:hover, .hourly-forecast > .glass-panel:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+
+/* Custom scrollbar for the hourly forecast */
+.hourly-forecast::-webkit-scrollbar {
+    height: 4px;
+}
+.hourly-forecast::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+.hourly-forecast::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+}
+.hourly-forecast::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Styling for the weather emoji */
+#weather-emoji {
+    animation: pulse-emoji 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-emoji {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
