@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Career Advisor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. INTRO SPLASH SCREEN -->
+    <div id="intro-screen">
+        <canvas id="intro-canvas"></canvas>
+        <div class="intro-content">
+            <h1>Navigate the Future</h1>
+            <p>Your career journey begins now.</p>
+            <button id="enter-btn">Enter</button>
+        </div>
+    </div>
+
+    <!-- 2. MAIN WEBSITE CONTENT (Initially hidden) -->
+    <main id="main-content">
+        <!-- Canvas for Main 3D Background -->
+        <canvas id="bg"></canvas>
+        <div class="container">
+            <h1>🚀 Future Career Advisor</h1>
+            <p>Enter your interests (e.g., art, tech, science) and discover your path.</p>
+            <div class="input-group">
+                <input type="text" id="interest-input" placeholder="e.g., creative jobs, data, healthcare">
+                <button id="suggest-btn">Find My Future</button>
+            </div>
+            <div id="results-container">
+                <!-- Career suggestions will be injected here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Import Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Your Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
