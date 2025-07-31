@@ -25,4 +25,4 @@ APIs:
 
 Open-Meteo Geocoding API (for city lookup)
 
-Open-Meteo Weather Forecast API (for weather data
+Open-Meteo Weather Forecast API (for weather data)
