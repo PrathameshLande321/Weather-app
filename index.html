@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Web | Spline 3D Intro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white bg-slate-900">
+    <!-- Container for the Spline Scene -->
+    <div id="spline-container">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.38/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/UPMQ3JIman3gUKbB/scene.splinecode"></spline-viewer>
+    </div>
+    <div class="aurora-background"></div>
+
+    <!-- Intro Page -->
+    <div id="intro-page" class="h-screen w-screen flex flex-col justify-center items-center text-center p-4 relative z-10">
+        <h1 class="intro-title font-orbitron text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-wider">
+            WEATHER WEB
+        </h1>
+        <p class="text-gray-300 mt-4 text-base sm:text-lg md:text-xl">A new horizon in weather forecasting.</p>
+        <button id="conditions-btn" class="conditions-button mt-12">
+            <span>Check Conditions</span>
+        </button>
+    </div>
+
+    <!-- Main Content Page (Initially Hidden) -->
+    <main id="main-page" class="hidden relative w-full min-h-screen p-4 sm:p-6 lg:p-8 flex flex-col lg:grid lg:grid-cols-5 gap-8 z-10">
+        
+        <!-- Main Weather Panel -->
+        <div id="main-panel" class="glass-panel lg:col-span-2 h-full p-6 sm:p-8 flex flex-col justify-between transition-opacity duration-700 opacity-0">
+            <div>
+                <h1 id="city-name" class="text-3xl sm:text-4xl font-bold tracking-tight">Loading...</h1>
+                <p id="current-date" class="text-lg text-gray-300"></p>
+            </div>
+            
+            <div class="flex-grow flex flex-col justify-center items-center my-6">
+                <div id="weather-icon-main" class="w-32 h-32 sm:w-40 sm:h-40 mb-4"></div>
+                <p id="temperature" class="text-7xl sm:text-8xl md:text-9xl font-black tracking-tighter">-°</p>
+                <p id="weather-description" class="text-xl sm:text-2xl font-medium text-gray-200">Please Wait</p>
+                <div id="weather-emoji" class="text-5xl mt-4"></div>
+            </div>
+
+            <div>
+                <p class="text-center text-gray-300 text-sm">Forecasting the future, today.</p>
+            </div>
+        </div>
+
+        <!-- Details Panel -->
+        <div id="details-panel" class="glass-panel lg:col-span-3 h-full p-6 sm:p-8 flex flex-col gap-6 transition-opacity duration-700 opacity-0">
+            
+            <div class="flex items-center gap-3">
+                <input type="text" id="search-input" placeholder="Search for a city..." class="w-full bg-transparent border-b-2 border-gray-400 focus:border-white focus:outline-none py-2 text-lg transition-colors duration-300">
+                <button id="search-button" class="p-3 bg-white/20 rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+
+            <div class="grid-container grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                <div class="glass-panel p-4"><p class="text-sm text-gray-300">Humidity</p><p id="humidity" class="text-2xl font-bold">- %</p></div>
+                <div class="glass-panel p-4"><p class="text-sm text-gray-300">Wind Speed</p><p id="wind-speed" class="text-2xl font-bold">- km/h</p></div>
+                <div class="glass-panel p-4"><p class="text-sm text-gray-300">Feels Like</p><p id="apparent-temp" class="text-2xl font-bold">-°</p></div>
+                <div class="glass-panel p-4"><p class="text-sm text-gray-300">Visibility</p><p id="visibility" class="text-2xl font-bold">- km</p></div>
+                <div class="glass-panel p-4"><p class="text-sm text-gray-300">Precipitation</p><p id="precipitation" class="text-2xl font-bold">- mm</p></div>
+                <div class="glass-panel p-4"><p class="text-sm text-gray-300">Air Quality (PM2.5)</p><p id="air-quality" class="text-2xl font-bold">-</p></div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-bold mb-4">Hourly Forecast</h3>
+                <div id="hourly-forecast-container" class="hourly-forecast flex gap-4 overflow-x-auto pb-4">
+                    <p class="text-gray-400">Loading forecast...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+        <div class="glass-panel p-8 rounded-2xl text-center max-w-sm mx-4">
+            <h2 class="text-2xl font-bold mb-4">Error</h2>
+            <p id="error-message">Could not find the specified city.</p>
+            <button id="close-modal" class="mt-6 bg-white/20 px-6 py-2 rounded-full hover:bg-white/30 transition-colors">Close</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

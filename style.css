@@ -1,0 +1,139 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --panel-bg: rgba(20, 20, 30, 0.25);
+    --panel-border: rgba(255, 255, 255, 0.2);
+    --blur-intensity: 15px;
+    --button-color: #4c1d95; /* Deep Purple */
+    --glow-color: #ec4899; /* Bright Pink/Magenta */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* Prevent all scrolling */
+    background-color: #020617;
+}
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* --- Animated Aurora Background --- */
+.aurora-background {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+    background: radial-gradient(ellipse at 25% 25%, #2c2454 0%, #020617 40%),
+                radial-gradient(ellipse at 75% 75%, #4c1d95 0%, #020617 40%);
+    animation: aurora-flow 20s infinite linear;
+}
+
+@keyframes aurora-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Spline Scene Container --- */
+#spline-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out;
+}
+
+/* --- Gradient Intro Title --- */
+.intro-title {
+    background: linear-gradient(90deg, #a855f7, #ec4899, #f97316);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 25px rgba(236, 72, 153, 0.3);
+}
+
+/* --- "Conditions" Button Style with Click Animation --- */
+.conditions-button {
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--button-color);
+    border-radius: 50px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.conditions-button span {
+    position: relative;
+    z-index: 2;
+    transition: color 0.4s ease;
+}
+
+.conditions-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: var(--glow-color);
+    border-radius: 50%;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.conditions-button:hover::before {
+    width: 250%;
+    height: 250%;
+}
+
+.conditions-button:hover {
+    box-shadow: 0 0 20px var(--glow-color);
+    border-color: var(--glow-color);
+}
+
+.conditions-button.clicked {
+    animation: button-click-anim 0.5s ease-out forwards;
+}
+
+@keyframes button-click-anim {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); opacity: 0.7; }
+    100% { transform: scale(0.9); opacity: 0; }
+}
+
+/* --- Main Content Layout --- */
+#main-page {
+    /* On mobile, allow vertical scrolling if content overflows */
+    overflow-y: auto;
+    height: 100vh;
+}
+
+
+/* --- Glass Panel Style --- */
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(var(--blur-intensity));
+    -webkit-backdrop-filter: blur(var(--blur-intensity));
+    border: 1px solid var(--panel-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* --- Interactive 3D Tilt for Grid Items --- */
+.grid-container { perspective: 1000px; }
+.grid-container > .glass-panel { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.grid-container > .glass-panel:hover {
+    transform: translateZ(20px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+/* --- Custom Scrollbar --- */
+.hourly-forecast::-webkit-scrollbar { height: 6px; }
+.hourly-forecast::-webkit-scrollbar-track { background: transparent; }
+.hourly-forecast::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 3px; }
+.hourly-forecast::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
+
+/* --- Animations --- */
+#weather-emoji { animation: pulse-emoji 2.5s infinite ease-in-out; }
+@keyframes pulse-emoji { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.15); opacity: 1; } }
